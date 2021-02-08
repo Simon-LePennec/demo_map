@@ -2,13 +2,19 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>Demo map</title>
+<title>Nice spots random explorer</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
 
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/v2.1.0/mapbox-gl.css' />
 
     <script defer type="text/javascript" src="./js/demo.js" ></script>
     <link rel="stylesheet" href="./css/map_main.css" />
+    <link rel="stylesheet" href="./css/demo_map.css" />
 
 </head>
 
@@ -16,6 +22,48 @@
 
     <div id='map'></div>
     
+    <button type="button" class="btn btn-dark" id="fly">Random Fly !</button>
+
+    <a class="btn btn-dark" id="coordinates_button" data-toggle="collapse" href="#coordinates_div" role="button" aria-expanded="false" aria-controls="coordinates_div">
+        Collect coordinates
+    </a>
+    <div class="collapse" id="coordinates_div">
+        <div class="card card-body" id="coordinates_div_body">
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Nice spots random explorer</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                Hi !
+                </p> 
+                <p>
+                I sometimes spend a lot of time on Google Map, just travelling around (especially durnig lockdowns). But MapboxGl also offers interesting renderings with DEM and buildings extrusion. <br>
+                So this page was just a test project, but I decided to make profitable all this time spent on maps by trying to archive here some cool places. 
+                </p>
+                <p>
+                Just click on the "Fly" button to start the trip.<br>
+                The list of places you can discover here is stored as a JSON in the data folder.<br>
+                To simplify adding new locations to the JSON I made the "Collect coordinates" button. If you find other cool spots, click the button and the location coordinates will be displayed, ready to be copied pasted into the JSON.
+                </p>
+                <p><i>
+                Some places use Mapbox DEM, rendering may take a little while for views that use pitch and bearing</p>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </div>
+    </div>
 
 </body>
 </html>
