@@ -34,3 +34,17 @@
     margin-left: 10px;
     width: 20%;
 }
+
+#footer {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+}
+
+#description {
+    background-color: azure;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    padding-top: 8px;
+}

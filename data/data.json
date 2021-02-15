@@ -1,0 +1,115 @@
+mydata = [
+    {
+        "name": "Machu Picchu",
+        "coords": {
+          "zoom": 16.81685475182302,
+          "center": [
+            -72.54486191073885,
+            -13.163033399464425
+          ],
+          "pitch": 57.069799856318205,
+          "bearing": 0,
+          "essential": true
+        },
+        "description": ""
+      },
+    {
+        "name": "Lhassa",
+        "coords": {
+            "zoom": 16.753270218214084,
+            "center": [91.11682346371094, 29.657465313214885],
+            "pitch": 84.49999999999999,
+            "bearing": -0,
+            "essential": true
+        },
+        "description": "<img src='https://images.chinahighlights.com/allpicture/2017/10/6811a1af6d094722ad000b78_cut_800x500_70.jpg' style='max-width:50%;max-height:50%;'>"
+    },
+    {
+        "name": "Uluru",
+        "coords": {
+            "zoom": 15.034958695808466,
+            "center": [131.03702418110242, -25.351250097990885],
+            "pitch": 84.99999999999997,
+            "bearing": -54.39999999999977,
+            "essential": true
+        },
+        "description": ""
+    },
+    {
+        "name": "Kazakh Lost Pentagram",
+        "coords": {
+        "zoom": 16.25655094758078,
+        "center": [
+            62.185790353634275,
+            52.47991822776581
+        ],
+        "pitch": 0,
+        "bearing": 0,
+        "essential": true
+        },
+        "description": ""
+    },
+    {
+        "name":"Vulcan Point : 'Islandception'",
+        "coords":{
+            "zoom":18.519635338398572,
+            "center":[120.99612863802707,14.009357567689065],
+            "pitch":0,
+            "bearing":0,
+            "essential":true
+        },
+        "description": "Vulcan Point Island was a small rocky island inside Main Crater Lake. It was one of few <strong>island in a lake on an island in a lake on an island</strong> in the world. <br>After the eruption of Taal Volcano on January 12, 2020, Vulcan Point disappeared. But it seems the satellite images have not been updated."
+    },
+    {
+        "name":"Forbidden City",
+        "coords":{
+            "zoom":16.849574551814847,
+            "center":[116.39062152668498,39.914730944889754],
+            "pitch":63.99999999999988,
+            "bearing":29.599999999999685,
+            "essential":true},
+        "description":"There's a lot of polygons here"
+    },
+    {
+        "name": "Poniente almeriense",
+        "coords": {
+          "zoom": 12.597200157371656,
+          "center": [
+            -2.7449747780359814,
+            36.7621846193836
+          ],
+          "pitch": 0,
+          "bearing": -0.8095999999997421,
+          "essential": true
+        },
+        "description": "Poniente Almeriense is a comarca in Almería, Spain. It is sometimes also known as the 'sea of plastic' (Mar de plástico) due to the numerous greenhouses that cover the area"
+      },
+      {
+        "name": "Dubai",
+        "coords": {
+          "zoom": 15.371752730446305,
+          "center": [
+            55.139565686117436,
+            25.11257587182328
+          ],
+          "pitch": 76.41551246537425,
+          "bearing": -50.66592797783945,
+          "essential": true
+        },
+        "description": ""
+      },
+      {
+        "name": "Eiffel Tower",
+        "coords": {
+          "zoom": 16.164641532268426,
+          "center": [
+            2.2944639532296662,
+            48.86066563138186
+          ],
+          "pitch": 22.669152151544672,
+          "bearing": 43.73719969858687,
+          "essential": true
+        },
+        "description": "Pretty accurate"
+      }
+];

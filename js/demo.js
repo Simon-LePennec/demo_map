@@ -17,6 +17,12 @@ var map = new mapboxgl.Map({
     bearing: 80,
     style: 'mapbox://styles/mapbox-map-design/ckhqrf2tz0dt119ny6azh975y'
 });
+// map.on('flystart', function(){
+// 	flying = true;
+// });
+// map.on('flyend', function(){
+// 	flying = false;
+// });
  
 map.on('load', function () {
 
@@ -51,99 +57,43 @@ map.on('load', function () {
         'type': 'fill-extrusion',
         'minzoom': 15,
         'paint': {
-            'fill-extrusion-color': '#aaa',
+            'fill-extrusion-color': 'white',
             // use an 'interpolate' expression to add a smooth transition effect to the
             // buildings as the user zooms in
-            'fill-extrusion-height': [
-                'interpolate',
-                ['linear'],
-                ['zoom'],
-                15,
-                0,
-                15.05,
-                ['get', 'height']
-            ],
+            'fill-extrusion-height': 
+                ["*", 2, ['get', 'height']]
+            ,
             'fill-extrusion-base': [
                 'interpolate',
                 ['linear'],
                 ['zoom'],
                 15,
-                0,
-                15.05,
+                1,
+                15.1,
                 ['get', 'min_height']
             ],
-            'fill-extrusion-opacity': 0.8
+            'fill-extrusion-opacity': 0.9
             }
         }
     );
 
-    //--//--//--//--//--//--//--//
-    //--// CHILL SPOTS LIST //--//
-    //--//--//--//--//--//--//--//
-
-    var cool_places_list = [
-        {
-            name: "machu_picchu",
-            coords: {
-                zoom: 16.192662346761892,
-                center: [-72.53702749232376,-13.15860866142934],
-                pitch: 70.5,
-                bearing: 60.67991456750246,
-                essential: true
-            },
-            description: ""
-        },
-        {
-            name: "lhassa",
-            coords: {
-                zoom: 16.753270218214084,
-                center: [91.11682346371094, 29.657465313214885],
-                pitch: 84.49999999999999,
-                bearing: -0,
-                essential: true
-            },
-            description: ""
-        },
-        {
-            name: "uluru",
-            coords: {
-                zoom: 15.034958695808466,
-                center: [131.03702418110242, -25.351250097990885],
-                pitch: 84.99999999999997,
-                bearing: -54.39999999999977,
-                essential: true
-            },
-            description: ""
-        },
-        {
-            "name": "pentagram",
-            "coords": {
-            "zoom": 16.25655094758078,
-            "center": [
-                62.185790353634275,
-                52.47991822776581
-            ],
-            "pitch": 0,
-            "bearing": 0,
-            "essential": true
-            },
-            "description": ""
-        }
-    ];
-
+    
     //--//--//--//--//-
     //--// FLY ! //--//
     //--//--//--//--//-
-
     document.getElementById('fly').addEventListener('click', function () {
 
+        //Hide coordinate & footer div
+        $('#coordinates_div').collapse('hide')
+        $("#footer").fadeOut("slow");
+
+        //START get random data
         function getRandomInt(min, max) {
             min = Math.ceil(min);
             max = Math.floor(max);
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
-
-        var random_int = getRandomInt(0,cool_places_list.length-1);
+        var random_int = getRandomInt(0,mydata.length-1);
 
         //Condition to avoid getting same place two times in a row
         if (typeof old_value !== 'undefined') {
@@ -151,45 +101,114 @@ map.on('load', function () {
                 //do nothing
             } else {
                 while (old_value == random_int) {
-                    var random_int = getRandomInt(0,cool_places_list.length-1);
+                    var random_int = getRandomInt(0,mydata.length-1);
                 }
             }
         } else {
             //do nothing
         }
 
-        map.flyTo(cool_places_list[random_int].coords);
+        location_data = mydata[random_int];
+        //END get random data
+
+        map.flyTo(location_data.coords);
+        //In order to check when flyto() has "arrived" (to display name & description)
+        map.fire('flystart');
 
         old_value = random_int;
 
-        $('#coordinates_div').collapse('hide')
-
     });
+}); //END map.on('load')
 
-    document.getElementById('coordinates_button').addEventListener('click', function () {
 
-        var _zoom = map.getZoom();
-        var _center = [map.getCenter().lng,map.getCenter().lat];
-        var _pitch = map.getPitch();
-        var _bearing = map.getBearing();
+//START display name & description if exists
+map.on('moveend', function(e){
 
-        var temp = {
-            zoom: _zoom,
-            center: _center,
-            pitch: _pitch,
-            bearing: _bearing,
-            essential: true
-        }
-
-        var object_to_print = {
-            name: "",
-            coords: temp,
-            description: ""
-        }
-
-        console.log(object_to_print)
-        document.getElementById('coordinates_div_body').innerHTML = JSON.stringify(object_to_print);
-
-    });
-    
+    if (location_data.name != "" || location_data.description != "") {
+        $("#footer").fadeIn("slow");
+        document.getElementById('description').innerHTML =
+            "<p><strong>"+ location_data.name +"</strong></p>"+
+            "<p>"+ location_data.description +"</p>"
+        //map.fire('flyend');
+    } 
 });
+//END display name & description if exists
+
+
+//START display coordinates
+var element1 = document.getElementById('coordinates_button');
+var element2 = document.getElementById('refresh')
+
+document.addEventListener('click', event => {
+    if (event.target !== element1 && event.target !== element2) {
+        return
+    }
+    var _zoom = map.getZoom();
+    var _center = [map.getCenter().lng,map.getCenter().lat];
+    var _pitch = map.getPitch();
+    var _bearing = map.getBearing();
+
+    var temp = {
+        zoom: _zoom,
+        center: _center,
+        pitch: _pitch,
+        bearing: _bearing,
+        essential: true
+    }
+
+    var object_to_print = {
+        name: "",
+        coords: temp,
+        description: ""
+    }
+
+    document.getElementById('json').textContent = JSON.stringify(object_to_print, undefined, 2);    
+});
+//END display coordinates
+
+
+//START copy to clipboard
+document.getElementById('copy_to_clipboard').addEventListener('click', function () {
+    /* Get the text field */
+    var copyText = document.getElementById("json");
+
+    /* Select the text field */
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+    /* Copy the text inside the text field */
+    document.execCommand("copy");
+
+    /* Alert the copied text */
+    alert("Copied the text: " + copyText.value);
+});
+//END copy to clipboard
+
+
+    // document.getElementById('coordinates_button').addEventListener('click', function () {
+
+    //     var _zoom = map.getZoom();
+    //     var _center = [map.getCenter().lng,map.getCenter().lat];
+    //     var _pitch = map.getPitch();
+    //     var _bearing = map.getBearing();
+
+    //     var temp = {
+    //         zoom: _zoom,
+    //         center: _center,
+    //         pitch: _pitch,
+    //         bearing: _bearing,
+    //         essential: true
+    //     }
+
+    //     var object_to_print = {
+    //         name: "",
+    //         coords: temp,
+    //         description: ""
+    //     }
+
+    //     console.log(object_to_print)
+    //     document.getElementById('json').textContent = JSON.stringify(object_to_print, undefined, 2);
+
+    // });
+    
+//});
