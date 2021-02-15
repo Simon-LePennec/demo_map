@@ -22,7 +22,7 @@ mydata = [
             "bearing": -0,
             "essential": true
         },
-        "description": "<img src='https://images.chinahighlights.com/allpicture/2017/10/6811a1af6d094722ad000b78_cut_800x500_70.jpg' style='max-width:50%;max-height:50%;'>"
+        "description": "Ok rendering is pretty disapointing here so I feel like we need an actual picture of it : <br><img src='https://images.chinahighlights.com/allpicture/2017/10/6811a1af6d094722ad000b78_cut_800x500_70.jpg' style='max-width:50%;max-height:50%;'>"
     },
     {
         "name": "Uluru",
@@ -111,5 +111,19 @@ mydata = [
           "essential": true
         },
         "description": "Pretty accurate"
+      },
+      {
+        "name": "Blue Dragon River",
+        "coords": {
+          "zoom": 13.349363447061185,
+          "center": [
+            -7.536375949550035,
+            37.33549605616126
+          ],
+          "pitch": 0,
+          "bearing": 33.511845730026096,
+          "essential": true
+        },
+        "description": ""
       }
 ];
