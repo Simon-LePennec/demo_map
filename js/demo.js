@@ -61,7 +61,7 @@ map.on('load', function () {
             // use an 'interpolate' expression to add a smooth transition effect to the
             // buildings as the user zooms in
             'fill-extrusion-height': 
-                ["*", 2, ['get', 'height']]
+                ["*", 1.5, ['get', 'height']]
             ,
             'fill-extrusion-base': [
                 'interpolate',
