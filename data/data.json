@@ -125,5 +125,19 @@ mydata = [
           "essential": true
         },
         "description": ""
+      },
+      {
+        "name": "Sotsgorod, Kiev",
+        "coords": {
+          "zoom": 14.902899315151984,
+          "center": [
+            30.619190559246533,
+            50.435586265716836
+          ],
+          "pitch": 0,
+          "bearing": -22.907011316829312,
+          "essential": true
+        },
+        "description": "<img src='https://image.shutterstock.com/shutterstock/photos/1074913976/display_1500/stock-photo-district-of-colorful-houses-in-kiev-aerial-view-1074913976.jpg' style='max-width:50%;max-height:50%;'>"
       }
 ];
