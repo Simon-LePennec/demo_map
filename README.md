@@ -1,3 +1,7 @@
-# demo_map
+# Hello world project
 
-Hello world project : https://simon-lepennec.github.io/demo_map/
+[Live Demo](https://simon-lepennec.github.io/SRU_storytelling/)
+
+This is just a fun project in order to make some tests with MapboxGL JS and Github for personnal use.
+ 
+But MapboxGL 3D rendering can be pretty cool (sometimes), so I left this in public
