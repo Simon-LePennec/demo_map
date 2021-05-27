@@ -1,6 +1,6 @@
 # Hello world project
 
-[Live Demo](https://simon-lepennec.github.io/SRU_storytelling/)
+[Live Demo](https://simon-lepennec.github.io/demo_map/)
 
 This is just a fun project in order to make some tests with MapboxGL JS and Github for personnal use.
  
