@@ -1,7 +1,6 @@
 $(document).ready(function(){
-    $("#exampleModalCenter").modal('show');
+    $("#StartingModalCenter").modal('show');
 });
-
 
 //--//--//--//--//--//--//--
 //-- MAP INITIALISATION --//
@@ -81,41 +80,46 @@ map.on('load', function () {
     //--//--//--//--//-
     //--// FLY ! //--//
     //--//--//--//--//-
+
+    //Use a copy of mydata because we remove viewed location from the array on each 
+    var mydata_copy = mydata.slice(0);
+
     document.getElementById('fly').addEventListener('click', function () {
 
-        //Hide coordinate & footer div
-        $('#coordinates_div').collapse('hide')
-        $("#footer").fadeOut("slow");
+        if (mydata_copy.length != 0) {
 
-        //START get random data
-        function getRandomInt(min, max) {
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
-        var random_int = getRandomInt(0,mydata.length-1);
-
-        //Condition to avoid getting same place two times in a row
-        if (typeof old_value !== 'undefined') {
-            if (old_value != random_int) {
-                //do nothing
-            } else {
-                while (old_value == random_int) {
-                    var random_int = getRandomInt(0,mydata.length-1);
-                }
+            //START get random data
+            function getRandomInt(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min + 1)) + min;
             }
+            var random_int = getRandomInt(0,mydata_copy.length-1);
+
+            location_data = mydata_copy[random_int];
+            //END get random data
+
+            //Remove the location from mydata_copy to avoid getting it again
+            mydata_copy.splice(random_int,1);
+
+            //Fly to location
+            map.flyTo(location_data.coords);
+            //In order to check when flyto() has "arrived" (to display name & description)
+            map.fire('flystart');
+
+             //Hide coordinate & footer div
+             $('#coordinates_div').collapse('hide')
+             $("#footer").fadeOut("slow");
+            
         } else {
-            //do nothing
+
+            //Show ending modal
+            $('#EndingModalCenter').modal('show');
+
+            //And reset the data
+            mydata_copy = mydata.slice(0);
+            
         }
-
-        location_data = mydata[random_int];
-        //END get random data
-
-        map.flyTo(location_data.coords);
-        //In order to check when flyto() has "arrived" (to display name & description)
-        map.fire('flystart');
-
-        old_value = random_int;
 
     });
 }); //END map.on('load')
@@ -183,32 +187,3 @@ document.getElementById('copy_to_clipboard').addEventListener('click', function 
     alert("Copied the text: " + copyText.value);
 });
 //END copy to clipboard
-
-
-    // document.getElementById('coordinates_button').addEventListener('click', function () {
-
-    //     var _zoom = map.getZoom();
-    //     var _center = [map.getCenter().lng,map.getCenter().lat];
-    //     var _pitch = map.getPitch();
-    //     var _bearing = map.getBearing();
-
-    //     var temp = {
-    //         zoom: _zoom,
-    //         center: _center,
-    //         pitch: _pitch,
-    //         bearing: _bearing,
-    //         essential: true
-    //     }
-
-    //     var object_to_print = {
-    //         name: "",
-    //         coords: temp,
-    //         description: ""
-    //     }
-
-    //     console.log(object_to_print)
-    //     document.getElementById('json').textContent = JSON.stringify(object_to_print, undefined, 2);
-
-    // });
-    
-//});

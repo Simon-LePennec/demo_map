@@ -139,5 +139,19 @@ mydata = [
           "essential": true
         },
         "description": "<img src='https://image.shutterstock.com/shutterstock/photos/1074913976/display_1500/stock-photo-district-of-colorful-houses-in-kiev-aerial-view-1074913976.jpg' style='max-width:50%;max-height:50%;'>"
+      },
+      {
+        "name": "Bavljenac",
+        "coords": {
+          "zoom": 16.39812440612367,
+          "center": [
+            15.727555145903523,
+            43.702676944250385
+          ],
+          "pitch": 0,
+          "bearing": -53.59999999999992,
+          "essential": true
+        },
+        "description": "A tiny Croatian island with more than 23 kilometres of walls looks like a fingerprint from above"
       }
 ];
